@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-50 text-ink-900 font-body antialiased dark:bg-ink-900 dark:text-ink-50;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-signal-500/20;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-signal-500 ring-offset-2 ring-offset-ink-50 dark:ring-offset-ink-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-pulse-600 text-white hover:bg-pulse-700 active:bg-pulse-800;
+  }
+  .btn-accent {
+    @apply btn bg-signal-500 text-white hover:bg-signal-600 active:bg-signal-700;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink-700 hover:bg-ink-100 dark:text-ink-100 dark:hover:bg-ink-800;
+  }
+  .btn-outline {
+    @apply btn border border-ink-200 dark:border-ink-700 hover:bg-ink-100 dark:hover:bg-ink-800;
+  }
+  .input-field {
+    @apply w-full rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-800 px-3.5 py-2.5 text-sm text-ink-900 dark:text-ink-50 placeholder:text-ink-400 focus:border-pulse-500 transition-colors;
+  }
+  .card {
+    @apply rounded-xl border border-ink-100 dark:border-ink-800 bg-white dark:bg-ink-800/60 shadow-card;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-400;
+  }
+}
+
+.leaflet-container {
+  @apply rounded-xl z-0;
+  height: 100%;
+  width: 100%;
+}
