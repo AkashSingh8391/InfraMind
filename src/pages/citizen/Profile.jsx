@@ -43,10 +43,17 @@ export default function Profile() {
     setAvatarUploading(true);
     try {
       const { url } = await uploadToCloudinary(file);
-      updateUserInContext({ avatarUrl: url });
+      // Persist to backend — not just local state, or it's lost on refresh/relogin
+      const { data } = await userApi.updateProfile({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        avatarUrl: url,
+      });
+      updateUserInContext(data);
       toast.success('Profile photo updated.');
-    } catch {
-      toast.error('Could not upload photo.');
+    } catch (err) {
+      toast.error(err?.response?.data?.message || 'Could not upload photo.');
     } finally {
       setAvatarUploading(false);
     }
